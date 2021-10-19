@@ -4,11 +4,11 @@ import Home from './components/Home/Home';
 import Admin from './components/Admin/Admin';
 import Employee from './components/Employee/Employee';
 import AddUser from './components/AddUser/AddUser';
-import UserDetails from './components/UserDetails/UserDetails';
+
 
 function App() {
   return (
-    <div className="main">
+    <div className="container">
       <Switch>
         <Route exact path="/">
           <Home />

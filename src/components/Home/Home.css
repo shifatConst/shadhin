@@ -1,0 +1,17 @@
+.home{
+
+}
+.buttonGroup{
+    display: flex;
+    align-items: center;
+}
+
+.buttonGroup .btn{
+    text-decoration: none;
+    margin: 0 10px;
+    color: black;
+    background-color: gray;
+    padding: 5px 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
