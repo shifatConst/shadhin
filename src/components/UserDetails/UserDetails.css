@@ -1,0 +1,7 @@
+.detailsContainer div > h3,p{
+    display: inline-block;
+    align-items: center;
+}
+h3{
+    margin-left: 15px;
+}
