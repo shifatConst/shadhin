@@ -1,7 +1,26 @@
-.detailsContainer div > h3,p{
+/* .detailsContainer div > h3,p{
     display: inline-block;
     align-items: center;
 }
 h3{
     margin-left: 15px;
+} */
+
+.buttonGroup{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
+
+.buttonGroup .btns{
+    color: white;
+    border: none;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 10px 15px;
+    background: #013A6D;
+}
+
+/* Link{
+    text-decoration: none;
+} */

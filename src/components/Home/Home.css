@@ -1,12 +1,15 @@
-.home{
 
-}
 .buttonGroup{
     display: flex;
     align-items: center;
 }
+.top-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-.buttonGroup .btn{
+.btn{
     text-decoration: none;
     margin: 0 10px;
     color: black;

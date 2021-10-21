@@ -5,6 +5,7 @@ import Admin from './components/Admin/Admin';
 import Employee from './components/Employee/Employee';
 import AddUser from './components/AddUser/AddUser';
 import UserDetails from './components/UserDetails/UserDetails';
+import UpdateUser from './components/UpdateUser/UpdateUser.jsx';
 
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
         </Route>
         <Route exact path="/userDetails/:id">
           <UserDetails />
+        </Route>
+        <Route exact path="/updateUser/:id">
+          <UpdateUser />
         </Route>
       </Switch>
 

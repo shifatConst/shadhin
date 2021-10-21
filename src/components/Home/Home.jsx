@@ -20,12 +20,14 @@ const Home = () => {
     }
     return (
         <div className="home">
-            <h2>User List</h2>
+            <div className="top-bar">
+                <h2>User List</h2>
+                <h4><Link to="/addUser" className="btn" >Add Users</Link></h4>
+            </div>
             <hr />
             <div className="buttonGroup">
                 <h4><Link to="/" className="btn" onClick={handleToggleAdmin}>Admin User Type</Link></h4>
                 <h4><Link to="/" className="btn" onClick={handleToggleUser}>Employee User Type</Link></h4>
-                <h4><Link to="/addUser" className="btn" >Add Users</Link></h4>
             </div>
             {
                 toggleAdmin && (

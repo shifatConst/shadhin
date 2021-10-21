@@ -14,7 +14,7 @@ const Employee = () => {
         axios.get(`https://60f2479f6d44f300177885e6.mockapi.io/users?user_type=${"employee"}`)
             .then(function (response) {
                 setEmployees(response.data);
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch(function (error) {
                 console.log(error);
