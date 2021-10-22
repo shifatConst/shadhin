@@ -1,3 +1,5 @@
+import { Country, State, City } from 'country-state-city';
+
 const states = State.getStatesOfCountry("BD");
 // console.log(states);
 // iso code is the state code
