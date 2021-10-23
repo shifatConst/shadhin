@@ -28,14 +28,12 @@ const validate = values => {
 
 }
 
+const divisions = City.getCitiesOfCountry("BD");
+const filteredDivisions = divisions.filter(function (v) {
+    return (v["name"] === "Dhaka" || v["name"] === "Chittagong" || v["name"] === "Barisal" || v["name"] === "Khulna" || v["name"] === "Sylhet" || v["name"] === "Rajshahi");
+});
+
 const AddUser = () => {
-    const divisions = City.getCitiesOfCountry("BD");
-    const filteredDivisions = divisions.filter(function (v) {
-        return (v["name"] === "Dhaka" || v["name"] === "Chittagong" || v["name"] === "Barisal" || v["name"] === "Khulna" || v["name"] === "Sylhet" || v["name"] === "Rajshahi");
-    });
-
-
-
     let stateCode;
     let citiesOfState;
     // let citiesOfState = City.getCitiesOfState("BD", "13");

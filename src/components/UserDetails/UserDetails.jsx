@@ -14,7 +14,7 @@ const UserDetails = () => {
     const allUsers = [...admins, ...employees]
     const userFilter = allUsers.filter((user) => user.id === id);
 
-    const goToEdit = (id) => {
+    const handleUpdate = (id) => {
         history.push(`/updateUser/${id}`)
     }
     // console.log(userFilter[0]);
@@ -45,7 +45,7 @@ const UserDetails = () => {
             </div>
             <div className="buttonGroup">
                 <Link to="/" className="btns">Back</Link>
-                <button onClick={() => goToEdit(id)} className="btns">Edit</button>
+                <button onClick={() => handleUpdate(id)} className="btns">Edit</button>
             </div>
         </div>
     );

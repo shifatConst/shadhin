@@ -18,31 +18,27 @@ const validate = values => {
     }
 
     if (!values.user_type) {
-        errors.last_name = 'Required';
+        errors.user_type = 'Required';
     }
 
-    if (!values.division) {
-        errors.last_name = 'Required';
+    if (values.user_type === "employee" && !values.division) {
+        errors.division = 'Required';
     }
 
-    if (!values.district) {
-        errors.last_name = 'Required';
+    if (values.user_type === "employee" && !values.district) {
+        errors.district = 'Required';
     }
 
     return errors;
 };
 
-
 const divisions = City.getCitiesOfCountry("BD");
-const filteredDivisions = divisions.filter(function (v) {
+export const filteredDivisions = divisions.filter(function (v) {
     return (v["name"] === "Dhaka" || v["name"] === "Chittagong" || v["name"] === "Barisal" || v["name"] === "Khulna" || v["name"] === "Sylhet" || v["name"] === "Rajshahi");
 });
 
-let citiesOfState = City.getCitiesOfState("BD", "13");
-
 const AddUser2 = () => {
-    // let stateCode;
-    // let citiesOfState;
+
 
     const formik = useFormik({
         initialValues: {
@@ -54,9 +50,32 @@ const AddUser2 = () => {
         },
         validate,
         onSubmit: values => {
-            console.log(values);;
+            console.log(values);
+            formik.handleReset();
         },
     });
+    let stateCode;
+    if (formik.values.division === "Dhaka") {
+        stateCode = "13";
+    }
+    if (formik.values.division === "Chittagong") {
+        stateCode = "B";
+    }
+    if (formik.values.division === "Barisal") {
+        stateCode = "06";
+    }
+    if (formik.values.division === "Khulna") {
+        stateCode = "27";
+    }
+    if (formik.values.division === "Sylhet") {
+        stateCode = "60";
+    }
+    if (formik.values.division === "Rajshahi") {
+        stateCode = "54";
+    }
+
+    let citiesOfState = City.getCitiesOfState("BD", stateCode);
+
     return (
         <form onSubmit={formik.handleSubmit}>
             <label htmlFor="first_name">First Name</label>
@@ -102,53 +121,59 @@ const AddUser2 = () => {
                 <option value="employee">Employee</option>
             </select>
             {formik.touched.user_type && formik.errors.user_type ? (
-                <div>{formik.errors.first_name}</div>
+                <div>{formik.errors.user_type}</div>
             ) : null}
             <br />
 
-            <label htmlFor="division">Division</label>
-            <select
-                id="division"
-                name="division"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.division}
-            >
-                <option value="">Select Division</option>
-                {
-                    filteredDivisions.map((division) => {
-                        return (
-                            <option value={division.name}>{division.name}</option>
-                        )
-                    })
-                }
-            </select>
-            {formik.touched.division && formik.errors.division ? (
-                <div>{formik.errors.division}</div>
-            ) : null}
-            <br />
+            {formik.values.user_type === "employee" ? (
+                <div>
+                    <label htmlFor="division">Division</label>
+                    <select
+                        id="division"
+                        name="division"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.division}
+                    >
+                        <option value="">Select Division</option>
+                        {
+                            filteredDivisions.map((division) => {
+                                return (
+                                    <option value={division.name}>{division.name}</option>
+                                )
+                            })
+                        }
+                    </select>
+                    {formik.touched.division && formik.errors.division ? (
+                        <div>{formik.errors.division}</div>
+                    ) : null}
+                    <br />
 
-            <label htmlFor="district">Division</label>
-            <select
-                id="district"
-                name="district"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.division}
-            >
-                <option value="">Select District</option>
-                {
-                    citiesOfState.map((city) => {
-                        return (
-                            <option value={city.name}>{city.name}</option>
-                        )
-                    })
-                }
-            </select>
-            {formik.touched.district && formik.errors.district ? (
-                <div>{formik.errors.district}</div>
+                    <label htmlFor="district">Division</label>
+                    <select
+                        id="district"
+                        name="district"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.district}
+                    >
+                        <option value="">Select District</option>
+                        {
+                            citiesOfState.map((city) => {
+                                return (
+                                    <option value={city.name}>{city.name}</option>
+                                )
+                            })
+                        }
+                    </select>
+                    {formik.touched.district && formik.errors.district ? (
+                        <div>{formik.errors.district}</div>
+                    ) : null}
+                    <br />
+                </div>
             ) : null}
-            <br />
+
+
 
 
             <button type="submit">Submit</button>
