@@ -1,9 +1,13 @@
-/* .detailsContainer div > h3,p{
-    display: inline-block;
+.detailsContainer div {
+    display: flex;
     align-items: center;
+    /* justify-content: space-between; */
+    margin-left: 5%;
+    flex-wrap: wrap;
 }
-h3{
-    margin-left: 15px;
+/* div p{
+    display: inline-block;
+    margin-left: 5%;
 } */
 
 .buttonGroup{

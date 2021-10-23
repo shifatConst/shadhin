@@ -18,7 +18,7 @@ const AddUser = () => {
         onSubmit: values => {
             axios.post('https://60f2479f6d44f300177885e6.mockapi.io/users', values)
                 .then(function (response) {
-                    console.log(response);
+                    // console.log(response);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -99,7 +99,7 @@ const AddUser = () => {
                                 {
                                     filteredDivisions.map((division) => {
                                         return (
-                                            <option value={division.name}>{division.name}</option>
+                                            <option key={division.stateCode} value={division.name}>{division.name}</option>
                                         )
                                     })
                                 }
@@ -121,7 +121,7 @@ const AddUser = () => {
                                 {
                                     citiesOfState.map((city) => {
                                         return (
-                                            <option value={city.name}>{city.name}</option>
+                                            <option key={city.latitude} value={city.name}>{city.name}</option>
                                         )
                                     })
                                 }
