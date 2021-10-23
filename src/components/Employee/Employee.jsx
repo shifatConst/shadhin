@@ -45,7 +45,15 @@ const Employee = () => {
                                 <td>{first_name} {last_name}</td>
                                 <td>{district}</td>
                                 <td>{division}</td>
-                                <td>True</td>
+                                {
+                                    employee.district === "Ramna" ? (
+                                        <td>True</td>
+                                    )
+                                        :
+                                        (
+                                            <td>False</td>
+                                        )
+                                }
                                 <td><button onClick={() => handleOrder(id)} className="btn">Detail View</button></td>
                             </tr>
                         )

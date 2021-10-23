@@ -1,111 +1,147 @@
-import { Field, Form, Formik } from 'formik';
-import { Country, State, City } from 'country-state-city';
 import React from 'react';
-import axios from 'axios'
-
-const validate = values => {
-    const errors = {};
-
-    if (!values.first_name) {
-        errors.first_name = 'Required';
-    } else if (values.first_name.length > 15) {
-        errors.first_name = "Must be 15 characters or less"
-    }
-    if (!values.last_name) {
-        errors.last_name = 'Required';
-    } else if (values.last_name.length > 15) {
-        errors.last_name = "Must be 15 characters or less"
-    }
-    if (!values.user_type) {
-        errors.last_name = 'Required';
-    }
-    if (!values.division) {
-        errors.division = 'Required';
-    }
-    if (!values.district) {
-        errors.district = 'Required';
-    }
-
-}
-
-const divisions = City.getCitiesOfCountry("BD");
-const filteredDivisions = divisions.filter(function (v) {
-    return (v["name"] === "Dhaka" || v["name"] === "Chittagong" || v["name"] === "Barisal" || v["name"] === "Khulna" || v["name"] === "Sylhet" || v["name"] === "Rajshahi");
-});
+import { useFormik } from 'formik';
+import { City } from 'country-state-city';
+import { filteredDivisions, getStateCode, validate } from './Utility';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const AddUser = () => {
-    let stateCode;
-    let citiesOfState;
-    // let citiesOfState = City.getCitiesOfState("BD", "13");
-    // console.log(citiesOfState);
+    const formik = useFormik({
+        initialValues: {
+            first_name: '',
+            last_name: '',
+            user_type: '',
+            division: '',
+            district: '',
+        },
+        validate,
+        onSubmit: values => {
+            axios.post('https://60f2479f6d44f300177885e6.mockapi.io/users', values)
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            formik.handleReset();
+        },
+    });
+
+    const stateCode = getStateCode(formik.values.division);
+    let citiesOfState = City.getCitiesOfState("BD", stateCode);
+
     return (
-        <Formik
-            initialValues={{
-                first_name: '',
-                last_name: '',
-                user_type: '',
-                division: '',
-                district: '',
+        <div>
+            <div className="top-bar">
+                <h2>Profile Information: Create</h2>
+            </div>
+            <hr />
+            <div>
+                <form onSubmit={formik.handleSubmit}>
+                    <label htmlFor="first_name">First Name</label>
+                    <input
+                        id="first_name"
+                        name="first_name"
+                        type="text"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.first_name}
+                    />
+                    {formik.touched.first_name && formik.errors.first_name ? (
+                        <div>{formik.errors.first_name}</div>
+                    ) : null}
+                    <br />
 
-            }}
-            onSubmit={(values) => {
-                axios.post('https://60f2479f6d44f300177885e6.mockapi.io/users', values)
-                    .then(function (response) {
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
 
-                // console.log(values);
-            }}
-        >
-            <Form>
-                <label htmlFor="">First Name:</label>
-                <Field name="first_name" type="text" />
-                <br />
-                <label htmlFor="">Last Name:</label>
-                <Field name="last_name" type="text" />
-                <br />
-                <label>User Type</label>
-                <Field name="user_type" as="select">
-                    <option value="">Select Admin</option>
-                    <option value="admin">Admin</option>
-                    <option value="employee">Employee</option>
-                </Field>
-                <br />
-                <label>Division</label>
-                <Field name="division" as="select">
-                    {
-                        filteredDivisions.map((division) => {
-                            stateCode = division.stateCode;
-                            citiesOfState = City.getCitiesOfState("BD", stateCode);
-                            return (
-                                <option value={division.name}>
-                                    {division.name}
-                                </option>
-                            )
-                        })
-                    }
-                </Field>
-                <br />
-                <label>District</label>
-                <Field name="district" as="select">
-                    {citiesOfState.map((city) => {
+                    <label htmlFor="last_name">Last Name</label>
+                    <input
+                        id="last_name"
+                        name="last_name"
+                        type="text"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.last_name}
+                    />
+                    {formik.touched.last_name && formik.errors.last_name ? (
+                        <div>{formik.errors.last_name}</div>
+                    ) : null}
+                    <br />
 
-                        return (
-                            <option value={city.name}>
-                                {city.name}
-                            </option>
-                        )
-                    })
-                    }
-                </Field>
 
-                <br />
-                <button type="submit">Submit</button>
-            </Form>
-        </Formik>
+                    <label htmlFor="user_type">User Type</label>
+                    <select
+                        id="user_type"
+                        name="user_type"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.user_type}
+                    >
+                        <option value="">Select User</option>
+                        <option value="admin">Admin</option>
+                        <option value="employee">Employee</option>
+                    </select>
+                    {formik.touched.user_type && formik.errors.user_type ? (
+                        <div>{formik.errors.user_type}</div>
+                    ) : null}
+                    <br />
+
+                    {formik.values.user_type === "employee" ? (
+                        <div>
+                            <label htmlFor="division">Division</label>
+                            <select
+                                id="division"
+                                name="division"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.division}
+                            >
+                                <option value="">Select Division</option>
+                                {
+                                    filteredDivisions.map((division) => {
+                                        return (
+                                            <option value={division.name}>{division.name}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                            {formik.touched.division && formik.errors.division ? (
+                                <div>{formik.errors.division}</div>
+                            ) : null}
+                            <br />
+
+                            <label htmlFor="district">Division</label>
+                            <select
+                                id="district"
+                                name="district"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.district}
+                            >
+                                <option value="">Select District</option>
+                                {
+                                    citiesOfState.map((city) => {
+                                        return (
+                                            <option value={city.name}>{city.name}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                            {formik.touched.district && formik.errors.district ? (
+                                <div>{formik.errors.district}</div>
+                            ) : null}
+                            <br />
+                        </div>
+                    ) : null}
+
+                    <div>
+                        <h4><Link to="/" className="btn" >Back</Link></h4>
+                        <button type="submit">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
     );
 };
 

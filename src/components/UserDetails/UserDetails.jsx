@@ -6,12 +6,15 @@ import { AdminContext } from '../Context/AdminContext';
 import { EmployeeContext } from '../Context/EmployeeContext';
 import './UserDetails.css'
 
+export let allUsers2;
 const UserDetails = () => {
     const { id } = useParams();
     const history = useHistory();
     const [admins] = useContext(AdminContext);
     const [employees] = useContext(EmployeeContext)
     const allUsers = [...admins, ...employees]
+    allUsers2 = allUsers;
+
     const userFilter = allUsers.filter((user) => user.id === id);
 
     const handleUpdate = (id) => {

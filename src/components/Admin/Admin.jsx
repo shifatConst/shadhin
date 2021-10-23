@@ -44,7 +44,15 @@ const Admin = () => {
                                 <td>{first_name} {last_name}</td>
                                 <td>{district}</td>
                                 <td>{division}</td>
-                                <td>True</td>
+                                {
+                                    admin.district === "Ramna" ? (
+                                        <td>True</td>
+                                    )
+                                        :
+                                        (
+                                            <td>False</td>
+                                        )
+                                }
                                 <td><button onClick={() => handleOrder(id)} className="btn">Detail View</button></td>
                             </tr>
                         )
