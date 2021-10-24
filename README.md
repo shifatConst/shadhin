@@ -25,7 +25,6 @@ For run this project to your local system please follow below rules:
 * Make API call for district/division only if user type is employee
 
 
-
 ## Technologies
 
 - React.js
