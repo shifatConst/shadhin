@@ -2,8 +2,6 @@ import axios from 'axios';
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { EmployeeContext } from '../Context/EmployeeContext';
-
-
 import './Employee.css'
 
 const Employee = () => {

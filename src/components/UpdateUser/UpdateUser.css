@@ -1,0 +1,7 @@
+.division-district{
+    margin-top: 10px;
+    display: flex;
+}
+.division-district label{
+    display: block
+}

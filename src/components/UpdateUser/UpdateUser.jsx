@@ -5,6 +5,7 @@ import { EmployeeContext } from '../Context/EmployeeContext';
 import { filteredDivisions, getStateCode } from '../AddUser/Utility'
 import { City } from 'country-state-city';
 import axios from 'axios';
+import './UpdateUser.css'
 
 const UpdateUser = () => {
     const { id } = useParams();
@@ -53,9 +54,9 @@ const UpdateUser = () => {
             <h2>Users Update</h2>
             <hr />
             <form onSubmit={handleUpdateUser}>
-                <div>
+                <div className="form">
                     <div>
-                        <label htmlFor="">First Name</label>
+                        <label htmlFor="">Name</label>
                     </div>
                     <div>
                         <input type="text" name="first_name" id="first_name" placeholder="First name"
@@ -65,36 +66,39 @@ const UpdateUser = () => {
                             value={userUpdate.last_name}
                             onChange={handleInput} />
                     </div>
-                    <div>
-                        <label htmlFor="">Division</label>
-                        <select name="division" id="division"
-                            value={userUpdate.division}
-                            onChange={handleInput}>
-                            <option value="">Select your Division</option>
-                            {
-                                filteredDivisions.map((division) => {
-                                    return (
-                                        <option value={division.name}>{division.name}</option>
-                                    )
-                                })
-                            }
-                        </select>
+                    <div className="division-district">
+                        <div>
+                            <label htmlFor="">Division</label>
+                            <select name="division" id="division"
+                                value={userUpdate.division}
+                                onChange={handleInput}>
+                                <option value="">Select your Division</option>
+                                {
+                                    filteredDivisions.map((division) => {
+                                        return (
+                                            <option value={division.name}>{division.name}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </div>
+                        <div>
+                            <label htmlFor="">District</label>
+                            <select name="district" id="district"
+                                value={userUpdate.district}
+                                onChange={handleInput}>
+                                <option value="">Select your district</option>
+                                {
+                                    citiesOfState.map((district) => {
+                                        return (
+                                            <option value={district.name}>{district.name}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </div>
                     </div>
-                    <div>
-                        <label htmlFor="">District</label>
-                        <select name="district" id="district"
-                            value={userUpdate.district}
-                            onChange={handleInput}>
-                            <option value="">Select your district</option>
-                            {
-                                citiesOfState.map((district) => {
-                                    return (
-                                        <option value={district.name}>{district.name}</option>
-                                    )
-                                })
-                            }
-                        </select>
-                    </div>
+
                 </div>
                 <button type="submit">Update</button>
             </form>

@@ -5,10 +5,10 @@
     margin-left: 5%;
     flex-wrap: wrap;
 }
-/* div p{
-    display: inline-block;
-    margin-left: 5%;
-} */
+div p{
+    margin-left: 15%;
+    text-align: center;
+}
 
 .buttonGroup{
     display: flex;
