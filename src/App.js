@@ -12,15 +12,6 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        {/* <Route exact path="/admin">
-          <Admin />
-        </Route>
-        <Route exact path="/employee">
-          <Employee />
-        </Route> */}
-        {/* <Route exact path="/addUser">
-          <AddUser />
-        </Route> */}
         <Route exact path="/userDetails/:id">
           <UserDetails />
         </Route>

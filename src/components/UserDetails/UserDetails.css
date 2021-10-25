@@ -1,13 +1,20 @@
+/* .detailsContainer div h4,p{
+    display: block;
+} */
+
 .detailsContainer div {
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
-    margin-left: 5%;
+    margin-left: 10%;
     flex-wrap: wrap;
 }
-div p{
+ /* p{
+    
     margin-left: 15%;
-    text-align: center;
+    text-align: right;
+} */
+.detailsContainer div h4{
+    width: 50%;
 }
 
 .buttonGroup{
@@ -16,15 +23,3 @@ div p{
     justify-content: space-evenly;
 }
 
-.buttonGroup .btns{
-    color: white;
-    border: none;
-    text-decoration: none;
-    border-radius: 3px;
-    padding: 10px 15px;
-    background: #013A6D;
-}
-
-/* Link{
-    text-decoration: none;
-} */

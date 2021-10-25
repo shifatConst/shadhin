@@ -1,7 +1,15 @@
-.division-district{
-    margin-top: 10px;
-    display: flex;
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
-.division-district label{
-    display: block
+form div{
+  margin-top: 10px;
+}
+div Link,button{
+  margin-left: 5%;
 }

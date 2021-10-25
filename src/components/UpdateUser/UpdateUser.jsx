@@ -6,6 +6,7 @@ import { filteredDivisions, getStateCode } from '../AddUser/Utility'
 import { City } from 'country-state-city';
 import axios from 'axios';
 import './UpdateUser.css'
+import { Link } from 'react-router-dom';
 
 const UpdateUser = () => {
     const { id } = useParams();
@@ -53,54 +54,49 @@ const UpdateUser = () => {
         <div>
             <h2>Users Update</h2>
             <hr />
-            <form onSubmit={handleUpdateUser}>
-                <div className="form">
-                    <div>
-                        <label htmlFor="">Name</label>
-                    </div>
-                    <div>
-                        <input type="text" name="first_name" id="first_name" placeholder="First name"
-                            value={userUpdate.first_name}
-                            onChange={handleInput} />
-                        <input type="text" name="last_name" id="last_name" placeholder="Last name"
-                            value={userUpdate.last_name}
-                            onChange={handleInput} />
-                    </div>
-                    <div className="division-district">
-                        <div>
-                            <label htmlFor="">Division</label>
-                            <select name="division" id="division"
-                                value={userUpdate.division}
-                                onChange={handleInput}>
-                                <option value="">Select your Division</option>
-                                {
-                                    filteredDivisions.map((division) => {
-                                        return (
-                                            <option value={division.name}>{division.name}</option>
-                                        )
-                                    })
-                                }
-                            </select>
-                        </div>
-                        <div>
-                            <label htmlFor="">District</label>
-                            <select name="district" id="district"
-                                value={userUpdate.district}
-                                onChange={handleInput}>
-                                <option value="">Select your district</option>
-                                {
-                                    citiesOfState.map((district) => {
-                                        return (
-                                            <option value={district.name}>{district.name}</option>
-                                        )
-                                    })
-                                }
-                            </select>
-                        </div>
-                    </div>
+            <form className="updateData" onSubmit={handleUpdateUser}>
 
+                <label htmlFor="">First Name</label>
+                <input type="text" name="first_name" id="first_name" placeholder="First name"
+                    value={userUpdate.first_name}
+                    onChange={handleInput} />
+
+                <label htmlFor="">Last Name</label>
+                <input type="text" name="last_name" id="last_name" placeholder="Last name"
+                    value={userUpdate.last_name}
+                    onChange={handleInput} />
+
+                <label htmlFor="">Division</label>
+                <select name="division" id="division"
+                    value={userUpdate.division}
+                    onChange={handleInput}>
+                    <option value="">Select your Division</option>
+                    {
+                        filteredDivisions.map((division) => {
+                            return (
+                                <option value={division.name}>{division.name}</option>
+                            )
+                        })
+                    }
+                </select>
+
+                <label htmlFor="">District</label>
+                <select name="district" id="district"
+                    value={userUpdate.district}
+                    onChange={handleInput}>
+                    <option value="">Select your district</option>
+                    {
+                        citiesOfState.map((district) => {
+                            return (
+                                <option value={district.name}>{district.name}</option>
+                            )
+                        })
+                    }
+                </select>
+                <div>
+                    <Link to="/" className="addUserCancel">Back</Link>
+                    <button className="addUserBtn" type="submit">Update</button>
                 </div>
-                <button type="submit">Update</button>
             </form>
         </div>
     );

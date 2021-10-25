@@ -50,7 +50,7 @@ const AddUser = ({ closeModal }) => {
                             value={formik.values.first_name}
                         />
                         {formik.touched.first_name && formik.errors.first_name ? (
-                            <div>{formik.errors.first_name}</div>
+                            <div className="error">{formik.errors.first_name}</div>
                         ) : null}
                     </div>
 
@@ -67,7 +67,7 @@ const AddUser = ({ closeModal }) => {
                             value={formik.values.last_name}
                         />
                         {formik.touched.last_name && formik.errors.last_name ? (
-                            <div>{formik.errors.last_name}</div>
+                            <div className="error">{formik.errors.last_name}</div>
                         ) : null}
                     </div>
 
@@ -87,7 +87,7 @@ const AddUser = ({ closeModal }) => {
                             <option value="employee">Employee</option>
                         </select>
                         {formik.touched.user_type && formik.errors.user_type ? (
-                            <div>{formik.errors.user_type}</div>
+                            <div className="error">{formik.errors.user_type}</div>
                         ) : null}
                     </div>
 
@@ -115,7 +115,7 @@ const AddUser = ({ closeModal }) => {
                                         }
                                     </select>
                                     {formik.touched.division && formik.errors.division ? (
-                                        <div>{formik.errors.division}</div>
+                                        <div className="error">{formik.errors.division}</div>
                                     ) : null}
                                 </div>
 
@@ -139,7 +139,7 @@ const AddUser = ({ closeModal }) => {
                                         }
                                     </select>
                                     {formik.touched.district && formik.errors.district ? (
-                                        <div>{formik.errors.district}</div>
+                                        <div className="error">{formik.errors.district}</div>
                                     ) : null}
                                 </div>
 
@@ -150,8 +150,8 @@ const AddUser = ({ closeModal }) => {
 
 
                     <div className="userAddBtns">
-                        <h4><button onClick={closeModal} className="btn" >Cancel</button></h4>
-                        <button type="submit">Submit</button>
+                        <h4><button onClick={closeModal} className="addUserCancel" >Cancel</button></h4>
+                        <button className="addUserBtn" type="submit">Save</button>
                     </div>
 
                 </form>

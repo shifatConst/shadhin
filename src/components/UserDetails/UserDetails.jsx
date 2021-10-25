@@ -13,14 +13,14 @@ const UserDetails = () => {
     const [admins] = useContext(AdminContext);
     const [employees] = useContext(EmployeeContext)
     const allUsers = [...admins, ...employees]
-    // allUsers2 = allUsers;
+
 
     const userFilter = allUsers.filter((user) => user.id === id);
 
     const handleUpdate = (id) => {
         history.push(`/updateUser/${id}`)
     }
-    // console.log(userFilter[0]);
+
     const { first_name, last_name, division, district, user_type } = userFilter[0];
     return (
         <div className="detailsContainer">
@@ -46,9 +46,9 @@ const UserDetails = () => {
                 <h4>District</h4>
                 <p>{district}</p>
             </div>
-            <div className="buttonGroup">
-                <Link to="/" className="btns">Back</Link>
-                <button onClick={() => handleUpdate(id)} className="btns">Edit</button>
+            <div>
+                <Link to="/" className="addUserCancel">Back</Link>
+                <button onClick={() => handleUpdate(id)} className="addUserBtn">Edit</button>
             </div>
         </div>
     );

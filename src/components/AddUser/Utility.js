@@ -11,8 +11,8 @@ export const validate = values => {
 
     if (!values.last_name) {
         errors.last_name = 'Required';
-    } else if (values.last_name.length > 20) {
-        errors.last_name = 'Must be 20 characters or less';
+    } else if (values.last_name.length > 15) {
+        errors.last_name = 'Must be 15 characters or less';
     }
 
     if (!values.user_type) {
