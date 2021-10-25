@@ -1,5 +1,6 @@
 import { City } from 'country-state-city';
 
+//formik form validation;
 export const validate = values => {
     const errors = {};
 
@@ -31,10 +32,12 @@ export const validate = values => {
 };
 
 const divisions = City.getCitiesOfCountry("BD");
+//filtering all the division of Bangladesh;
 export const filteredDivisions = divisions.filter(function (v) {
     return (v["name"] === "Dhaka" || v["name"] === "Chittagong" || v["name"] === "Barisal" || v["name"] === "Khulna" || v["name"] === "Sylhet" || v["name"] === "Rajshahi");
 });
 
+//function create for get stateCode for all every division of Bangladesh.
 export const getStateCode = (stateName) => {
     let stateCode;
     if (stateName === "Dhaka") {

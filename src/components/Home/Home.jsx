@@ -16,9 +16,11 @@ const Home = () => {
     function closeModal() {
         setIsOpen(false);
     }
+
     const [toggleAdmin, setToggleAdmin] = useState(false);
     const [toggleUser, setToggleUser] = useState(false);
 
+    //For toggle between the admin and employee users tab
     const handleToggleAdmin = () => {
         toggleAdmin ? setToggleAdmin(false) : setToggleAdmin(true);
         setToggleUser(false);

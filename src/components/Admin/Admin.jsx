@@ -6,10 +6,9 @@ import { AdminContext } from '../Context/AdminContext';
 const Admin = () => {
     const history = useHistory();
     const [admins, setAdmins] = useContext(AdminContext);
-    // console.log("This is admin page");
 
     useEffect(() => {
-        axios.get(`https://60f2479f6d44f300177885e6.mockapi.io/users?user_type=${"admin"}`)
+        axios.get("https://60f2479f6d44f300177885e6.mockapi.io/users?user_type=admin")
             .then(function (response) {
                 setAdmins(response.data);
                 // console.log(response.data);
@@ -45,6 +44,7 @@ const Admin = () => {
                                 <td>{district}</td>
                                 <td>{division}</td>
                                 {
+                                    //if the admin's district is Ramna it will show true as active/inactive status.
                                     admin.district === "Ramna" ? (
                                         <td>True</td>
                                     )

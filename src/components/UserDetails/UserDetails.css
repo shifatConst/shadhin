@@ -1,18 +1,9 @@
-/* .detailsContainer div h4,p{
-    display: block;
-} */
-
 .detailsContainer div {
     display: flex;
     align-items: center;
     margin-left: 10%;
     flex-wrap: wrap;
 }
- /* p{
-    
-    margin-left: 15%;
-    text-align: right;
-} */
 .detailsContainer div h4{
     width: 50%;
 }

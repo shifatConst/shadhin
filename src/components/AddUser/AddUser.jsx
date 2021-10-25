@@ -27,7 +27,9 @@ const AddUser = ({ closeModal }) => {
         },
     });
 
+
     const stateCode = getStateCode(formik.values.division);
+    //to get all the cities of a particular state;
     let citiesOfState = City.getCitiesOfState("BD", stateCode);
 
     return (

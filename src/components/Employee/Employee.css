@@ -3,8 +3,6 @@ table{
 }
 
 td, th{
-    /* border: none; */
-    text-align: center;
     padding: 8px;
 }
 tr:nth-child(odd) {
